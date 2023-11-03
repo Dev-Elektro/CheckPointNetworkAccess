@@ -15,7 +15,7 @@ from .utils import get_data_dir, encrypt, decrypt
 async def authorization(url: str, login: str, password: str):
     logger.info("Start authorization Check Point")
     try:
-        browser = await launch()
+        browser = await launch({'args': ['--no-sandbox', '--disable-setuid-sandbox']})
         page = await browser.newPage()
         await page.goto(url)
         js = """(data) => {
